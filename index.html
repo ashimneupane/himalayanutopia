@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Coming Soon</h1>
+            <p>Travel with us and have fun!</p>
+        </div>
+        <div class="countdown">
+            <h2>Countdown to Launch</h2>
+            <div id="timer">
+                <div>
+                    <span id="days"></span>
+                    <div class="smalltext">Days</div>
+                </div>
+                <div>
+                    <span id="hours"></span>
+                    <div class="smalltext">Hours</div>
+                </div>
+                <div>
+                    <span id="minutes"></span>
+                    <div class="smalltext">Minutes</div>
+                </div>
+                <div>
+                    <span id="seconds"></span>
+                    <div class="smalltext">Seconds</div>
+                </div>
+            </div>
+        </div>
+        <div class="subscribe">
+            <h2>Subscribe to Newsletter</h2>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="social-icons">
+            <!-- Add your social media icons and links here -->
+            <!-- <a href="#" target="_blank"><img src="facebook-icon.png" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#" target="_blank"><img src="instagram-icon.png" alt="Instagram"></a> -->
+        </div>
+    </div>
+
+    <script>
+        // Set the launch date (May 25th, 2024)
+        const launchDate = new Date('May 25, 2024 00:00:00').getTime();
+
+        // Update the countdown every second
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update the countdown elements
+            document.getElementById('days').innerHTML = days;
+            document.getElementById('hours').innerHTML = hours;
+            document.getElementById('minutes').innerHTML = minutes;
+            document.getElementById('seconds').innerHTML = seconds;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById('timer').innerHTML = 'EXPIRED';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
+
