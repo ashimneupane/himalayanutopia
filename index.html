@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="modal-container">
+      <div class="modal">
+        <div class="modal-title">Great!</div>
+        You've successfully subscribed!
+        <button onClick="closeModal()" class="modal-button">Ok</button>
+      </div>
+    </div>
     <div class="container">
       <div class="header">
         <h1>Coming Soon</h1>
@@ -54,9 +61,18 @@
     </div>
 
     <script>
+      //modal to show after submit
+      const modal = document.getElementsByClassName("modal-container")[0];
+
+      //function to close the modal
+      const closeModal = () => {
+        modal.style.display = "none";
+      };
+
       // Set the launch date (May 25th, 2024)
       const launchDate = new Date("May 25, 2024 00:00:00").getTime();
 
+      modal.style.display = "none";
       // Update the countdown every second
       const x = setInterval(function () {
         const now = new Date().getTime();
@@ -90,7 +106,6 @@
 
       //event  listener for submit button (send email)
       submit_button.onclick = () => {
-        console.log("s");
         fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "post",
           headers: new Headers({
@@ -106,7 +121,7 @@
             },
           }),
         })
-          .then((res) => console.log(res))
+          .then((res) => (modal.style.display = "flex"))
           .catch((err) => console.log(err));
       };
     </script>
